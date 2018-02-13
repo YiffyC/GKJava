@@ -1,4 +1,4 @@
-package gestionBanquaire;
+package gestionBanquaire.q2;
 
 public class Compte {
 	
