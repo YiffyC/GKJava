@@ -1,4 +1,4 @@
-package gestionBanquaire;
+package gestionBanquaire.q4_2;
 
 import java.time.LocalDate;
 import java.util.Vector;
@@ -90,7 +90,7 @@ public class Compte {
 	{		
 		double total = 0;
 		for (Mouvement m : mouvements) {
-			if(m.getType().equals("dépot"));
+			if(m.getType().equals("Depot"))
 			total = total + m.getMontant();
 		}
 		return total;

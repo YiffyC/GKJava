@@ -1,24 +1,22 @@
-package gestionBanquaire;
+package gestionBanquaire.q3;
 
-import java.time.LocalDate;
 import java.util.Vector;
 
 public class Compte {
 	
 	
 	//init
-	//private Vector<Double> Depots, Retraits; //Deux vecteurs de Double
-	private Vector<Mouvement> mouvements;
+	private Vector<Double> Depots, Retraits; //Deux vecteurs de Double
 	private double decouvert;
+
 	
 	
 	public Compte()
 	{
 		// TODO Auto-generated constructor stub
-		mouvements = new Vector<Mouvement>();
+		Depots = new Vector<Double>();
+		Retraits = new Vector<Double>();
 		decouvert = 0;
-		
-		
 		
 		
 	}
@@ -39,8 +37,7 @@ public class Compte {
 	/* Ajout du montant en parametre */
 	public void depotDe(double montant)
 	{
-		this.mouvements.addElement(new Mouvement(montant, "Depot"));
-		
+		this.Depots.addElement(montant);
 	}
 	
 	
@@ -52,7 +49,7 @@ public class Compte {
 	{
 		if(verifDecouvert(montant))
 		{
-			this.mouvements.addElement(new Mouvement(montant, "Retrait"));
+			this.Retraits.addElement(montant);
 			return true;
 		}
 		
@@ -89,10 +86,10 @@ public class Compte {
 	public double getSommeDepots()
 	{		
 		double total = 0;
-		for (Mouvement m : mouvements) {
-			if(m.getType().equals("dépot"));
-			total = total + m.getMontant();
+		for (double d : Depots) {
+			total = total + d;
 		}
+		
 		return total;
 	}
 
@@ -103,13 +100,12 @@ public class Compte {
 	public double getSommeRetraits()
 	{		
 		double total = 0;
-		for (Mouvement m : mouvements) {
-			if(m.getType().equals("Retrait"))
-			total = total + m.getMontant();
+		for (double d : Retraits)
+		{
+			total = total + d;
 		}
 		return total;
 	}
-	
 
 
 	public double getDecouvert()

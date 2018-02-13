@@ -1,4 +1,4 @@
-package gestionBanquaire;
+package gestionBanquaire.q3;
 
 public class TestCompte {
 
@@ -34,11 +34,6 @@ public class TestCompte {
 		c2.retraitDe(5);
 		retraitVisuel(c2, 5);
 		System.out.println("c2 : " + c2.getSolde());
-		
-		
-		
-		
-		
 
 
 	}
@@ -54,6 +49,5 @@ public class TestCompte {
 			System.out.println("Retrait KO");
 	}
 	
-
 
 }

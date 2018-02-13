@@ -40,7 +40,7 @@ public class AnimalTest {
 			if(object instanceof Animal)
 			{
 				Animal an = (Animal) object;
-				System.out.println(an.getNom());
+				System.out.println(an.getNom());       
 			}
 			
 			else
