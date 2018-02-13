@@ -1,4 +1,4 @@
-package gestionBanquaire;
+package gestionBanquaire.q1_4;
 
 public class TestCompte {
 
