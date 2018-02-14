@@ -1,4 +1,4 @@
-package gestionBanquaire;
+package gestionBanquaire.q4_3;
 
 public class Depot extends Mouvement {
 
@@ -8,12 +8,4 @@ public class Depot extends Mouvement {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public double getPlus()
-	{
-		// TODO Auto-generated method stub
-		return super.getMontant();
-	}
-
-	
 }

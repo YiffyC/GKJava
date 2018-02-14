@@ -17,10 +17,7 @@ public class Compte {
 		// TODO Auto-generated constructor stub
 		mouvements = new Vector<Mouvement>();
 		decouvert = 0;
-		
-		
-		
-		
+
 	}
 	
 	
@@ -39,7 +36,7 @@ public class Compte {
 	/* Ajout du montant en parametre */
 	public void depotDe(double montant)
 	{
-		this.mouvements.addElement(new Mouvement(montant, "Depot"));
+		this.getMouvements().addElement(new Depot(montant));
 		
 	}
 	
@@ -52,26 +49,26 @@ public class Compte {
 	{
 		if(verifDecouvert(montant))
 		{
-			this.mouvements.addElement(new Mouvement(montant, "Retrait"));
+			this.getMouvements().addElement(new Retrait(montant));
 			return true;
 		}
 		
 		else return false;
 		
-	}
-
-
-	//retourne le solde actuel, soit depots- ce qui a ete retire
-	public double getSolde()
-	{
-		return getSommeDepots()-getSommeRetraits();
+		
 	}
 	
+	
+
+	
+
+
 
 	
 	//Si le montant du decouvert + le solde est > quele montant retire alors vrai sinon faux
 	private boolean verifDecouvert(double montant)
 	{
+				
 		if( (this.getDecouvert() + this.getSolde() ) >= montant)
 		{
 			return true;
@@ -84,14 +81,33 @@ public class Compte {
 	
 	// get set
 	
+	//retourne le solde actuel, soit depots- ce qui a ete retire
+	public double getSolde()
+	{
+		double d = 0;
+		double r = 0;
+		
+		for (Mouvement m : getMouvements())
+		{
+			if (m instanceof Retrait)
+				r += m.getMontant();
+			else
+				d +=  m.getMontant();	
+				
+		}
+		
+		return d-r;
+	}
+	
+
 	
 	
 	public double getSommeDepots()
 	{		
 		double total = 0;
-		for (Mouvement m : mouvements) {
-			if(m.getType().equals("dépot"));
-			total = total + m.getMontant();
+		for (Mouvement m : getMouvements())
+		{
+			total += m.getPlus();
 		}
 		return total;
 	}
@@ -103,9 +119,9 @@ public class Compte {
 	public double getSommeRetraits()
 	{		
 		double total = 0;
-		for (Mouvement m : mouvements) {
-			if(m.getType().equals("Retrait"))
-			total = total + m.getMontant();
+		for (Mouvement m : getMouvements())
+		{
+			total += m.getMoins();
 		}
 		return total;
 	}
@@ -116,6 +132,13 @@ public class Compte {
 	{		
 		return decouvert;
 	}
+
+
+	public Vector<Mouvement> getMouvements() {
+		return mouvements;
+	}
+
+
 
 
 }

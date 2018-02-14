@@ -1,4 +1,4 @@
-package gestionBanquaire;
+package gestionBanquaire.q4_3;
 
 import java.util.Vector;
 
@@ -39,8 +39,13 @@ public class TestCompte {
 		
 		
 		System.out.println("------- TEST ------");
-		//Vector<Mouvement> v = c.getMouvements();
-
+		Vector<Mouvement> v = c.getMouvements();
+		for (Mouvement mouvement : v) 
+		{
+			//tostring a ecrire
+			System.out.println(mouvement);
+		}
+		
 		
 		
 		

@@ -1,26 +1,23 @@
-package gestionBanquaire.q2;
+package gestionBanquaire.q4_4;
+
+import java.time.LocalDate;
+import java.util.Vector;
 
 public class Compte {
 	
 	
 	//init
-	private int iDep, iRet;
-	private double Depots[], Retraits[];
+	//private Vector<Double> Depots, Retraits; //Deux vecteurs de Double
+	private Vector<Mouvement> mouvements;
 	private double decouvert;
-
-
-
-
-
-
-	public Compte() {
+	
+	
+	public Compte()
+	{
 		// TODO Auto-generated constructor stub
-		iDep = 0;
-		iRet = 0;
-		Depots = new double[20];
-		Retraits = new double[20];
+		mouvements = new Vector<Mouvement>();
 		decouvert = 0;
-		
+
 	}
 	
 	
@@ -39,8 +36,8 @@ public class Compte {
 	/* Ajout du montant en parametre */
 	public void depotDe(double montant)
 	{
-		this.Depots[iDep] = montant;
-		iDep++;
+		this.getMouvements().addElement(new Depot(montant));
+		
 	}
 	
 	
@@ -52,27 +49,26 @@ public class Compte {
 	{
 		if(verifDecouvert(montant))
 		{
-			this.Retraits[iRet] = montant;
-			iRet++;
+			this.getMouvements().addElement(new Retrait(montant));
 			return true;
 		}
 		
 		else return false;
 		
-	}
-
-
-	//retourne le solde actuel, soit depots- ce qui a ete retire
-	public double getSolde()
-	{
-		return getSommeDepots()-getSommeRetraits();
+		
 	}
 	
+	
+
+	
+
+
 
 	
 	//Si le montant du decouvert + le solde est > quele montant retire alors vrai sinon faux
 	private boolean verifDecouvert(double montant)
 	{
+				
 		if( (this.getDecouvert() + this.getSolde() ) >= montant)
 		{
 			return true;
@@ -85,13 +81,33 @@ public class Compte {
 	
 	// get set
 	
+	//retourne le solde actuel, soit depots- ce qui a ete retire
+	public double getSolde()
+	{
+		double d = 0;
+		double r = 0;
+		
+		for (Mouvement m : getMouvements())
+		{
+			if (m instanceof Retrait)
+				r += m.getMontant();
+			else
+				d +=  m.getMontant();	
+				
+		}
+		
+		return d-r;
+	}
+	
+
 	
 	
 	public double getSommeDepots()
 	{		
 		double total = 0;
-		for (double d : Depots) {
-			total = total + d;
+		for (Mouvement m : getMouvements())
+		{
+			total += m.getPlus();
 		}
 		return total;
 	}
@@ -103,20 +119,26 @@ public class Compte {
 	public double getSommeRetraits()
 	{		
 		double total = 0;
-		for (double d : Retraits)
+		for (Mouvement m : getMouvements())
 		{
-			total = (double) total + d;
+			total += m.getMoins();
 		}
 		return total;
 	}
+	
 
 
-	public double getDecouvert() {
+	public double getDecouvert()
+	{		
 		return decouvert;
 	}
 
-	
-	
-	
+
+	public Vector<Mouvement> getMouvements() {
+		return mouvements;
+	}
+
+
+
 
 }

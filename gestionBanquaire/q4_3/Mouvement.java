@@ -1,8 +1,8 @@
-package gestionBanquaire;
+package gestionBanquaire.q4_3;
 
 import java.time.LocalDate;
 
-public abstract class Mouvement {
+public class Mouvement {
 	
 	private double montant;
 	private LocalDate date;
@@ -16,17 +16,6 @@ public abstract class Mouvement {
 	
 	}
 
-	public double getPlus()
-	{
-		return 0;
-	}
-
-	public double getMoins()
-	{
-		return 0;
-	}
-	
-	
 
 	public double getMontant() {
 		return montant;
@@ -37,8 +26,13 @@ public abstract class Mouvement {
 	public LocalDate getDate() {
 		return date;
 	}
+
 	
 
+
+	
+	
+	
 	
 
 }
