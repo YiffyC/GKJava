@@ -45,7 +45,7 @@ public class Compte {
 	 * 
 	 * si verifDecouvert est vraie on fait le retrait sinon non
 	 * */
-	public boolean retraitDe(double montant)
+	public boolean retraitDe(double montant) throws CompteException
 	{
 		if(verifDecouvert(montant))
 		{
@@ -53,9 +53,11 @@ public class Compte {
 			return true;
 		}
 		
-		else return false;
-		
-		
+		else 
+		{
+			throw new CompteException("Impossible de retirer " + montant);
+		}
+	
 	}
 	
 	

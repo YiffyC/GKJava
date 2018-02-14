@@ -8,13 +8,16 @@ public class TestCompte {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CompteException
+	{
+		
 		// TODO Auto-generated method stub
 
 		
 		//On teste les depots retraits 
 		Compte c = new Compte();
 		Compte c2 = new Compte(100);
+		
 		//on ouvre un comptede 1000
 		
 		c.depotDe(1000);
@@ -32,17 +35,29 @@ public class TestCompte {
 		System.out.println("Total retrait c1 (=600) : " + c.getSommeRetraits());
 		System.out.println("Total c1 (=1000): " + c.getSolde());
 		
-		c2.retraitDe(50);		
-		c2.retraitDe(5);
-		retraitVisuel(c2, 5);
+		
+		c2.retraitDe(50);
+		
+		
+		try {
+			c2.retraitDe(200);
+		} catch (CompteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		c2.retraitDe(10);
+		
+		
+		
 		System.out.println("c2 (-60) : " + c2.getSolde());
 		
 		
 		System.out.println("------- TEST ------");
 		//Vector<Mouvement> v = c.getMouvements();
 
-		
-		
+
 		
 
 
@@ -51,6 +66,8 @@ public class TestCompte {
 	
 	
 	//permet de faire une retrait tout en affichant si le retrait c'est effectué ou pas
+	
+	/*
 	static void retraitVisuel(Compte c, double montant)
 	{
 		if(c.retraitDe(montant))
@@ -58,7 +75,7 @@ public class TestCompte {
 		else
 			System.out.println("Retrait KO");
 	}
-	
+	*/
 
 
 }
