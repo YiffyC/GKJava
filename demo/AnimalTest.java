@@ -54,7 +54,9 @@ public class AnimalTest {
 		listeAn.add(new Animal());
 		
 		
+		String s = null;
 		
+		System.out.println(s);
 		
 		
 		
