@@ -61,8 +61,8 @@ public class TestDAO {
 		unIngenieur = ingDAO.findIngenieur(mle);
 		TestDAO.afficheIngenieur("modif du " + mle, unIngenieur);
 
-		ingDAO.deleteIngenieur(1);
-		//unIngenieur = ingDAO.findIngenieur(mle); //Test de si il est bien delete
+		System.out.println(ingDAO.deleteIngenieur(1)); //verif que l'ingé est bien supprimé
+		
 
 		
 	}
